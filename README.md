@@ -14,7 +14,9 @@ And:
 
 ### `npm start`
 
-This will start the application at [http: // localhost: 8000](http: // localhost: 8000). <br />
+This will start the application at:
+
+### `http://localhost:8000`
 
 To launch the API you need to run:
 
@@ -22,4 +24,4 @@ To launch the API you need to run:
 
 Which will start the API at:
 
-### `http: // localhost: 3000`
+### `http://localhost:3000`
