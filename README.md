@@ -6,7 +6,7 @@ Basically a CRUD application that we can filter by the items requested for the A
 
 ## How to use
 
-Clone / download this repository, run:
+Clone/Download this repository, then run:
 
 ### `npm install`
 
