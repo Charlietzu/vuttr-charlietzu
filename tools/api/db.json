@@ -12,14 +12,14 @@
       "id": 5
     },
     {
-      "title": "New teste",
-      "description": "description test, this is my github :D",
-      "link": "github.com/Charlietzu",
+      "title": "Charlietzu",
+      "description": "My github :D",
+      "link": "http://github.com/Charlietzu",
       "tagspreparation": [],
       "tags": [
         "github",
-        "Charlietzu",
-        "developer"
+        "charlietzu",
+        "front-end"
       ],
       "tagsText": " ",
       "id": 6

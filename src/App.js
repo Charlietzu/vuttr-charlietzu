@@ -67,6 +67,13 @@ class App extends Component {
     });
   }
 
+  removeTag(tagText, event) {
+    let { newToolData } = this.state;
+    event.preventDefault();
+    newToolData.tags = newToolData.tags.filter((tag) => tag !== tagText);
+    this.setState({ newToolData });
+  }
+
   toggleNewToolModal() {
     this.setState({
       newToolModal: !this.state.newToolModal,
@@ -88,7 +95,7 @@ class App extends Component {
     let tools = this.state.tools.map((tool) => {
       return (
         <div key={tool.id} className="card mb-2">
-          <a href={tool.link}>
+          <a href={tool.link} target="_blank">
             <h5 className="card-header card-title">{tool.title}</h5>
           </a>
           <div className="card-body">
@@ -98,12 +105,16 @@ class App extends Component {
                 return "#" + tag + " ";
               })}
             </p>
-            <button
+            <Button className="m-1" color="success">
+              Edit Tool
+            </Button>
+            <Button
+              className="m-1"
               onClick={this.deleteTool.bind(this, tool.id)}
-              className="btn btn-danger"
+              color="danger"
             >
               Remove
-            </button>
+            </Button>
           </div>
         </div>
       );
@@ -190,11 +201,6 @@ class App extends Component {
                     let { newToolData } = this.state;
                     if (e.keyCode === 32) {
                       newToolData.tags.push(e.target.value.trim());
-                      //newToolData.tagspreparation.push(e.target.value);
-                      /*newToolData.tags = newToolData.tags.concat(
-                        newToolData.tagspreparation
-                      );*/
-                      console.log("tags: ", newToolData.tags);
                       e.target.value = "";
                       e.target.focus();
                     }
@@ -208,6 +214,22 @@ class App extends Component {
                 <small id="tagsHelp" className="form-text text-muted">
                   Split the tags using the space bar.
                 </small>
+                <div>
+                  {this.state.newToolData.tags.map((tag) => {
+                    return (
+                      <Button
+                        key={this.state.newToolData.tags.indexOf(tag)}
+                        onClick={(e) => {
+                          this.removeTag(tag, e);
+                        }}
+                        color="danger"
+                        className="m-2"
+                      >
+                        {"#" + tag + " "}
+                      </Button>
+                    );
+                  })}
+                </div>
               </FormGroup>
             </Form>
           </ModalBody>
@@ -228,23 +250,5 @@ class App extends Component {
     );
   }
 }
-
-/*
-async function handleResponse(response) {
-  if (response.ok) return response.json();
-  if (response.status === 400) {
-    // So, a server-side validation error occurred.
-    // Server side validation returns a string error message, so parse as text instead of json.
-    const error = await response.text();
-    throw new Error(error);
-  }
-  throw new Error("Network response was not ok.");
-}
-
-function handleError(error) {
-  console.error("API call failed. " + error);
-  throw error;
-}
-*/
 
 export default App;
