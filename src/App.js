@@ -12,6 +12,9 @@ import {
   Label,
 } from "reactstrap";
 
+import Jumbotron from "./components/home/Jumbotron";
+import ToolsList from "./components/tools/ToolsList";
+
 import axios from "axios";
 const API_URL = "http://localhost:3000/tools";
 
@@ -26,7 +29,15 @@ class App extends Component {
         description: "",
         link: "",
         tagsText: "",
-        tagspreparation: [],
+        tags: [],
+      },
+      editToolModal: false,
+      editToolData: {
+        id: "",
+        title: "",
+        description: "",
+        link: "",
+        tagsText: "",
         tags: [],
       },
     };
@@ -53,7 +64,6 @@ class App extends Component {
           title: "",
           description: "",
           link: "",
-          tagspreparation: [],
           tags: [],
         },
       });
@@ -62,9 +72,12 @@ class App extends Component {
   }
 
   deleteTool(id) {
+    console.log(this);
+    /*
     axios.delete(API_URL + "/" + id).then((response) => {
       this.getTools();
     });
+    */
   }
 
   removeTag(tagText, event) {
@@ -81,8 +94,58 @@ class App extends Component {
         title: "",
         description: "",
         link: "",
-        tagspreparation: [],
         tags: [],
+      },
+    });
+  }
+
+  editTool(id, title, description, link, tags) {
+    this.setState({
+      editToolData: { id, title, description, link, tags },
+      editToolModal: !this.state.editToolModal,
+    });
+  }
+
+  updateTool() {
+    let { title, description, link, tags } = this.state.editToolData;
+    axios
+      .put(API_URL + "/" + this.state.editToolData.id, {
+        title,
+        description,
+        link,
+        tags,
+      })
+      .then((response) => {
+        this.getTools();
+
+        this.setState({
+          editToolModal: false,
+          editToolData: {
+            id: "",
+            title: "",
+            description: "",
+            link: "",
+            tagsText: "",
+            tags: [],
+          },
+        });
+      });
+  }
+
+  toggleEditToolModal() {
+    this.setState({
+      editToolModal: !this.state.editToolModal,
+    });
+  }
+
+  setEditToolData(id, title, description, link, tags) {
+    this.setState({
+      editToolData: {
+        id,
+        title,
+        description,
+        link,
+        tags,
       },
     });
   }
@@ -91,6 +154,21 @@ class App extends Component {
     this.getTools();
   }
 
+  render() {
+    return (
+      <>
+        <Jumbotron />
+        <ToolsList
+          tools={this.state.tools}
+          toggleEditToolModal={this.toggleEditToolModal}
+          deleteTool={this.deleteTool}
+        />
+      </>
+    );
+  }
+  /*
+
+ 
   render() {
     let tools = this.state.tools.map((tool) => {
       return (
@@ -105,7 +183,11 @@ class App extends Component {
                 return "#" + tag + " ";
               })}
             </p>
-            <Button className="m-1" color="success">
+            <Button
+              className="m-1"
+              onClick={this.toggleEditToolModal.bind(this)}
+              color="success"
+            >
               Edit Tool
             </Button>
             <Button
@@ -122,12 +204,7 @@ class App extends Component {
 
     return (
       <>
-        <div className="container-fluid">
-          <div className="jumbotron">
-            <h1>VUTTR</h1>
-            <h3>Very Useful Tools to Remember</h3>
-          </div>
-        </div>
+        <Jumbotron />
         <div className="container mb-4">
           <Button onClick={this.toggleNewToolModal.bind(this)} color="primary">
             Add Tool
@@ -246,9 +323,122 @@ class App extends Component {
             </Button>
           </ModalFooter>
         </Modal>
+
+        <Modal
+          isOpen={this.state.editToolModal}
+          toggle={this.toggleEditToolModal.bind(this)}
+        >
+          <ModalHeader>Edit Tool</ModalHeader>
+          <ModalBody>
+            <Form>
+              <FormGroup>
+                <Label for="title">Title</Label>
+                <Input
+                  type="text"
+                  placeholder="Tool Title"
+                  className="form-control"
+                  id="title"
+                  value={this.state.editToolData.title}
+                  onChange={(e) => {
+                    let { editToolData } = this.state;
+                    editToolData.title = e.target.value;
+                    this.setState({ editToolData });
+                  }}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="link">Link</Label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="link"
+                  aria-describedby="linkHelp"
+                  value={this.state.tools.link}
+                  onChange={(e) => {
+                    let { editToolData } = this.state;
+                    editToolData.link = e.target.value;
+                    this.setState({ editToolData });
+                  }}
+                />
+                <small id="linkHelp" className="form-text text-muted">
+                  Format: http://link.com
+                </small>
+              </FormGroup>
+              <FormGroup>
+                <Label for="description">Description</Label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="description"
+                  value={this.state.editToolData.description}
+                  onChange={(e) => {
+                    let { editToolData } = this.state;
+                    editToolData.description = e.target.value;
+                    this.setState({ editToolData });
+                  }}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="tags">Tags</Label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="tags"
+                  aria-describedby="tagsHelp"
+                  value={this.state.editToolData.tagsText}
+                  onKeyDown={(e) => {
+                    let { editToolData } = this.editToolData;
+                    if (e.keyCode === 32) {
+                      editToolData.tags.push(e.target.value.trim());
+                      e.target.value = "";
+                      e.target.focus();
+                    }
+                  }}
+                  onChange={(e) => {
+                    let { editToolData } = this.state;
+                    editToolData.tagsText = e.target.value;
+                    this.setState({ editToolData });
+                  }}
+                />
+                <small id="tagsHelp" className="form-text text-muted">
+                  Split the tags using the space bar.
+                </small>
+                <div>
+                  {this.state.editToolData.tags.map((tag) => {
+                    return (
+                      <Button
+                        key={this.state.editToolData.tags.indexOf(tag)}
+                        onClick={(e) => {
+                          this.removeTag(tag, e);
+                        }}
+                        color="danger"
+                        className="m-2"
+                      >
+                        {"#" + tag + " "}
+                      </Button>
+                    );
+                  })}
+                </div>
+              </FormGroup>
+            </Form>
+          </ModalBody>
+          <ModalFooter>
+            {" "}
+            <Button
+              color="secondary"
+              onClick={this.toggleEditToolModal.bind(this)}
+            >
+              Cancel
+            </Button>
+            <Button color="primary" onClick={this.updateTool.bind(this)}>
+              Edit Tool
+            </Button>
+          </ModalFooter>
+        </Modal>
       </>
     );
   }
 }
-
+*/
+}
 export default App;
