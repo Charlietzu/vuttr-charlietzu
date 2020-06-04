@@ -1,16 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import {
-  Form,
-  Button,
-  Modal,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  FormGroup,
-  Input,
-  Label,
-} from "reactstrap";
 
 import Jumbotron from "./components/home/Jumbotron";
 import ToolsList from "./components/tools/ToolsList";
