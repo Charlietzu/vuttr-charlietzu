@@ -78,6 +78,33 @@ it("should add another tool", () => {
   expect(newState[1].title).to.be.equal("Test New");
 });
 
+it("should add a tool with a tag inside an array", () => {
+  const initialState = deepFreeze([]);
+  const newTool = deepFreeze({
+    id: 0,
+    title: "Test",
+    description: "Another test",
+    link: "link test",
+    tags: ["test1"],
+  });
+
+  const action = actions.createToolSuccess(newTool);
+  const newState = toolReducer(initialState, action);
+
+  const afterState = [
+    {
+      id: 0,
+      title: "Test",
+      description: "Another test",
+      link: "link test",
+      tags: ["test1"],
+    },
+  ];
+  expect(newState).to.be.deep.equal(afterState);
+  expect(newState.length).to.be.equal(1);
+  expect(newState[0].title).to.be.equal("Test");
+});
+
 it("should remove tool", () => {
   const initialState = deepFreeze([
     {

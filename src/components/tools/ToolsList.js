@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import ToolCard from "./ToolCard";
+import Jumbotron from "../home/Jumbotron";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Redirect } from "react-router-dom";
 import * as toolActions from "../../redux/actions/toolActions";
 
 class ToolsList extends Component {
+  state = {
+    redirectToAddToolPage: false,
+  };
+
   componentDidMount() {
     const { tools, actions } = this.props;
 
@@ -26,10 +32,21 @@ class ToolsList extends Component {
 
   render() {
     return (
-      <ToolCard
-        tools={this.props.tools}
-        onDeleteClick={this.handleDeleteTool}
-      />
+      <>
+        {this.state.redirectToAddToolPage && <Redirect to="/tool" />}
+        <Jumbotron />
+        <button
+          style={{ marginBottom: 20 }}
+          className="btn btn-primary add-author"
+          onClick={() => this.setState({ redirectToAddToolPage: true })}
+        >
+          Add Tool
+        </button>
+        <ToolCard
+          tools={this.props.tools}
+          onDeleteClick={this.handleDeleteTool}
+        />
+      </>
     );
   }
 }
@@ -49,26 +66,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-/* <ToolCard
-        tool={tool}
-        toggleEditToolModal={toggleEditToolModal}
-        deleteTool={deleteTool}
-      /> */
-
-/* 
-const ToolsList = ({ tools, toggleEditToolModal, deleteTool }) => (
-  <div className="container">
-    {tools.map((tool) => (
-      <ToolCard
-        key={tool.id}
-        tool={tool}
-        toggleEditToolModal={toggleEditToolModal}
-        deleteTool={deleteTool}
-      />
-    ))}
-  </div>
-);
- */ export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ToolsList);
+export default connect(mapStateToProps, mapDispatchToProps)(ToolsList);

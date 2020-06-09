@@ -41,11 +41,14 @@ export function loadTools() {
 
 export function saveTool(tool) {
   return function (dispatch) {
-    return toolApi.saveTool(tool).then((savedTool) => {
-      dispatch(createToolSuccess(savedTool)).catch((error) => {
+    return toolApi
+      .saveTool(tool)
+      .then((savedTool) => {
+        dispatch(createToolSuccess(savedTool));
+      })
+      .catch((error) => {
         throw error;
       });
-    });
   };
 }
 

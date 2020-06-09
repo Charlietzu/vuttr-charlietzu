@@ -1,74 +1,12 @@
 import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
-import Jumbotron from "./components/home/Jumbotron";
 import ToolsList from "./components/tools/ToolsList";
-
-import axios from "axios";
-const API_URL = "http://localhost:3000/tools";
+import AddTool from "./components/tools/AddTool";
+import Header from "./components/common/Header";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tools: [],
-      newToolModal: false,
-      newToolData: {
-        title: "",
-        description: "",
-        link: "",
-        tagsText: "",
-        tags: [],
-      },
-      editToolModal: false,
-      editToolData: {
-        id: "",
-        title: "",
-        description: "",
-        link: "",
-        tagsText: "",
-        tags: [],
-      },
-    };
-  }
-
-  getTools() {
-    axios
-      .get(API_URL)
-      .then((response) => {
-        this.setState({ tools: response.data });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
-  addTool() {
-    axios.post(API_URL, this.state.newToolData).then((response) => {
-      let { tools } = this.state;
-      tools.push(response.data);
-      this.setState({
-        tools,
-        newToolData: {
-          title: "",
-          description: "",
-          link: "",
-          tags: [],
-        },
-      });
-      this.toggleNewToolModal();
-    });
-  }
-
-  deleteTool(id) {
-    console.log(this);
-    /*
-    axios.delete(API_URL + "/" + id).then((response) => {
-      this.getTools();
-    });
-    */
-  }
-
   removeTag(tagText, event) {
     let { newToolData } = this.state;
     event.preventDefault();
@@ -88,71 +26,15 @@ class App extends Component {
     });
   }
 
-  editTool(id, title, description, link, tags) {
-    this.setState({
-      editToolData: { id, title, description, link, tags },
-      editToolModal: !this.state.editToolModal,
-    });
-  }
-
-  updateTool() {
-    let { title, description, link, tags } = this.state.editToolData;
-    axios
-      .put(API_URL + "/" + this.state.editToolData.id, {
-        title,
-        description,
-        link,
-        tags,
-      })
-      .then((response) => {
-        this.getTools();
-
-        this.setState({
-          editToolModal: false,
-          editToolData: {
-            id: "",
-            title: "",
-            description: "",
-            link: "",
-            tagsText: "",
-            tags: [],
-          },
-        });
-      });
-  }
-
-  toggleEditToolModal() {
-    this.setState({
-      editToolModal: !this.state.editToolModal,
-    });
-  }
-
-  setEditToolData(id, title, description, link, tags) {
-    this.setState({
-      editToolData: {
-        id,
-        title,
-        description,
-        link,
-        tags,
-      },
-    });
-  }
-
-  componentDidMount() {
-    this.getTools();
-  }
-
   render() {
     return (
-      <>
-        <Jumbotron />
-        <ToolsList
-          tools={this.state.tools}
-          toggleEditToolModal={this.toggleEditToolModal}
-          deleteTool={this.deleteTool}
-        />
-      </>
+      <div className="container-fluid">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={ToolsList} />
+          <Route path="/tool" component={AddTool} />
+        </Switch>
+      </div>
     );
   }
   /*
