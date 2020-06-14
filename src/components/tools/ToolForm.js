@@ -1,7 +1,14 @@
 import React from "react";
 import TextInput from "../common/TextInput";
 
-const ToolForm = ({ tool, errors, onSave, onChange }) => {
+const ToolForm = ({
+  tool,
+  tagText,
+  errors,
+  onSave,
+  onChange,
+  handleTagsChange,
+}) => {
   return (
     <form onSubmit={onSave}>
       <h2 className="mt-2">Add Tool</h2>
@@ -34,7 +41,7 @@ const ToolForm = ({ tool, errors, onSave, onChange }) => {
         label="Link"
         placeholder="https://example.com/"
         value={tool.link}
-        onChange={(e) => {}}
+        onChange={onChange}
         error={errors.link}
       />
       <div className="form-group">
@@ -42,11 +49,12 @@ const ToolForm = ({ tool, errors, onSave, onChange }) => {
         <TextInput
           name="tags"
           label="Tags"
-          value={tool.tags}
-          onChange={onChange}
+          value={tagText.text}
+          onChange={handleTagsChange}
+          onKeyDown={handleTagsChange}
           error={errors.tags}
         />
-        <small id="tagsHelp" class="form-text text-muted">
+        <small id="tagsHelp" className="form-text text-muted">
           Type the tag and press the spacebar key.
         </small>
       </div>

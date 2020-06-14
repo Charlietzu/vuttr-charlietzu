@@ -1,7 +1,15 @@
 /* eslint-disable no-useless-concat */
 import React from "react";
 
-const TextInput = ({ name, label, onChange, placeholder, value, error }) => {
+const TextInput = ({
+  name,
+  label,
+  onChange,
+  placeholder,
+  value,
+  error,
+  onKeyDown,
+}) => {
   let wrapperClass = "form-group";
   if (error && error.length > 0) {
     wrapperClass += " " + "has-error";
@@ -18,6 +26,7 @@ const TextInput = ({ name, label, onChange, placeholder, value, error }) => {
           placeholder={placeholder}
           value={value}
           onChange={onChange}
+          onKeyDown={onKeyDown}
         />
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
