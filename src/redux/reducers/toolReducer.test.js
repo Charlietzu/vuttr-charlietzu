@@ -190,37 +190,3 @@ it("should return initial state if last state is undefined", () => {
   const afterState = initialState;
   expect(toolReducer(lastState, action)).to.be.deep.equal(afterState);
 });
-
-it("should filter the tools by the search term", () => {
-  const initialState = deepFreeze([
-    {
-      id: 0,
-      title: "Test",
-      description: "Another test",
-      link: "link test",
-      tags: ["test1", "test2", "test3"],
-    },
-    {
-      id: 1,
-      title: "Something",
-      description: "Another new test",
-      link: "link for the test",
-      tags: ["test1", "test4", "test2"],
-    },
-  ]);
-
-  const searchTerm = "Something";
-  const action = actions.loadFilteredToolsSuccess(searchTerm);
-  const newState = toolReducer(initialState, action);
-
-  const afterState = [
-    {
-      id: 1,
-      title: "Something",
-      description: "Another new test",
-      link: "link for the test",
-      tags: ["test1", "test4", "test2"],
-    },
-  ];
-  expect(newState).to.be.deep.equal(afterState);
-});

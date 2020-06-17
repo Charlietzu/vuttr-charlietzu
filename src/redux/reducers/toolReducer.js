@@ -6,8 +6,6 @@ export default function toolReducer(state = initialState, action) {
   switch (action.type) {
     case types.LOAD_TOOLS_SUCCESS:
       return action.tools;
-    case types.LOAD_FILTERED_TOOLS_SUCCESS:
-      return state.filter((tool) => tool.title === action.searchTerm);
     case types.CREATE_TOOL_SUCCESS:
       return [...state, { ...action.tool }];
     case types.REMOVE_TOOL_SUCCESS:
