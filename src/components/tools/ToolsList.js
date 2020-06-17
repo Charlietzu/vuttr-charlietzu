@@ -59,6 +59,12 @@ class ToolsList extends Component {
               name="filter"
             />
           </div>
+          <div class="form-check form-check-inline">
+            <input type="checkbox" class="form-check-input" id="tagsOnly" />
+            <label class="form-check-label" for="tagsOnly">
+              Search in tags only
+            </label>
+          </div>
         </form>
         <ToolCard
           tools={this.props.tools}

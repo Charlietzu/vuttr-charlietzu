@@ -71,3 +71,16 @@ export function filterTools(searchTerm) {
       });
   };
 }
+
+export function filterToolsByTag(searchTag) {
+  return function (dispatch) {
+    return toolApi
+      .filterToolsByTag(searchTag)
+      .then((tools) => {
+        dispatch(loadToolsSuccess(tools));
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+}

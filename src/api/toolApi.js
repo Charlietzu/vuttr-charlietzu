@@ -28,3 +28,9 @@ export function filterTools(searchTerm) {
     .then(handleResponse)
     .catch(handleError);
 }
+
+export function filterToolsByTag(searchTag) {
+  return fetch(API_URL + "?tags_like=" + searchTag)
+    .then(handleResponse)
+    .catch(handleError);
+}
