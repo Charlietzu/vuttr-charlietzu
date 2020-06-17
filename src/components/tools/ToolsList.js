@@ -9,6 +9,7 @@ import * as toolActions from "../../redux/actions/toolActions";
 class ToolsList extends Component {
   state = {
     redirectToAddToolPage: false,
+    isChecked: false,
   };
 
   componentDidMount() {
@@ -35,8 +36,17 @@ class ToolsList extends Component {
     event.preventDefault();
     let searchTerm = event.target.filter.value;
     let filter = await this.props.actions.loadFilteredTools(searchTerm);
-    console.log(this.props.tools);
   };
+
+  handleFilterByTag = async (event) => {
+    event.preventDefault();
+    let searchTag = event.target.filter.value;
+    let filter = await this.props.actions.loadFilteredToolsByTag(searchTag);
+  };
+
+  handleCheck() {
+    this.setState({ isChecked: !this.state.isChecked });
+  }
 
   render() {
     return (
@@ -50,7 +60,12 @@ class ToolsList extends Component {
         >
           Add Tool
         </button>
-        <form onSubmit={this.handleFilter} className="form-inline float-right">
+        <form
+          onSubmit={
+            this.state.isChecked ? this.handleFilterByTag : this.handleFilter
+          }
+          className="form-inline float-right"
+        >
           <div className="form-group mx-sm-3 mb-2">
             <input
               type="text"
@@ -59,17 +74,24 @@ class ToolsList extends Component {
               name="filter"
             />
           </div>
-          <div class="form-check form-check-inline">
-            <input type="checkbox" class="form-check-input" id="tagsOnly" />
-            <label class="form-check-label" for="tagsOnly">
+          <div className="form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="tagsOnly"
+              onChange={this.handleCheck.bind(this)}
+            />
+            <label className="form-check-label" htmlFor="tagsOnly">
               Search in tags only
             </label>
           </div>
         </form>
-        <ToolCard
-          tools={this.props.tools}
-          onDeleteClick={this.handleDeleteTool}
-        />
+        <div className="mt-3">
+          <ToolCard
+            tools={this.props.tools}
+            onDeleteClick={this.handleDeleteTool}
+          />
+        </div>
       </div>
     );
   }
@@ -86,7 +108,14 @@ function mapDispatchToProps(dispatch) {
     actions: {
       loadTools: bindActionCreators(toolActions.loadTools, dispatch),
       deleteTool: bindActionCreators(toolActions.deleteTool, dispatch),
-      loadFilteredTools: bindActionCreators(toolActions.filterTools, dispatch),
+      loadFilteredTools: bindActionCreators(
+        toolActions.filterToolsByGlobal,
+        dispatch
+      ),
+      loadFilteredToolsByTag: bindActionCreators(
+        toolActions.filterToolsByTag,
+        dispatch
+      ),
     },
   };
 }

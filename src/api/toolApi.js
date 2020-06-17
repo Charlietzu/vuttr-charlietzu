@@ -23,7 +23,7 @@ export function deleteTool(toolId) {
     .catch(handleError);
 }
 
-export function filterTools(searchTerm) {
+export function filterToolByGlobal(searchTerm) {
   return fetch(API_URL + "?q=" + searchTerm)
     .then(handleResponse)
     .catch(handleError);

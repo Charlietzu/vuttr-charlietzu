@@ -59,10 +59,10 @@ export function deleteTool(tool) {
   };
 }
 
-export function filterTools(searchTerm) {
+export function filterToolsByGlobal(searchTerm) {
   return function (dispatch) {
     return toolApi
-      .filterTools(searchTerm)
+      .filterToolByGlobal(searchTerm)
       .then((tools) => {
         dispatch(loadToolsSuccess(tools));
       })

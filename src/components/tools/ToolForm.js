@@ -67,6 +67,7 @@ const ToolForm = ({
                 key={tool.tags.indexOf(tag)}
                 color="danger"
                 className="m-2"
+                onClick={(e) => e.preventDefault()}
               >
                 {"#" + tag + " "}
               </Button>

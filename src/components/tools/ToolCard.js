@@ -5,7 +5,7 @@ import { Button } from "reactstrap";
 const ToolCard = ({ tools, onDeleteClick }) =>
   tools.map((tool) => {
     return (
-      <div key={tool.id} className="card mb-2">
+      <div key={tool.id} className="card mt-2 mb-2">
         <a href={tool.link} target="_blank">
           <h5 className="card-header card-title">{tool.title}</h5>
         </a>
