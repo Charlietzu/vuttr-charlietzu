@@ -46,11 +46,12 @@ export function AddTool({ saveTool, history, ...props }) {
   return (
     <ToolForm
       tool={tool}
-      tagText={tagText}
       errors={errors}
       onSave={handleSave}
       onChange={handleChange}
       handleTagsChange={handleTagsChange}
+      tagText={tagText}
+      tagsAux={tagsAux}
     />
   );
 }

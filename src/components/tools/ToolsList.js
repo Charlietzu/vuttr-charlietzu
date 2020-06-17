@@ -25,14 +25,22 @@ class ToolsList extends Component {
     try {
       /**In async calls, it pauses on each await keyword and continue when the async call is completed.  */
       await this.props.actions.deleteTool(tool);
+      console.log(this.props.tools);
     } catch (error) {
       alert("Delete failed: " + error.message);
     }
   };
 
+  handleFilter = async (event) => {
+    event.preventDefault();
+    let searchTerm = event.target.filter.value;
+    let filter = await this.props.actions.loadFilteredTools(searchTerm);
+    console.log(this.props.tools);
+  };
+
   render() {
     return (
-      <>
+      <div>
         {this.state.redirectToAddToolPage && <Redirect to="/tool" />}
         <Jumbotron />
         <button
@@ -42,11 +50,21 @@ class ToolsList extends Component {
         >
           Add Tool
         </button>
+        <form onSubmit={this.handleFilter} className="form-inline float-right">
+          <div className="form-group mx-sm-3 mb-2">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Buscar"
+              name="filter"
+            />
+          </div>
+        </form>
         <ToolCard
           tools={this.props.tools}
           onDeleteClick={this.handleDeleteTool}
         />
-      </>
+      </div>
     );
   }
 }
@@ -62,6 +80,7 @@ function mapDispatchToProps(dispatch) {
     actions: {
       loadTools: bindActionCreators(toolActions.loadTools, dispatch),
       deleteTool: bindActionCreators(toolActions.deleteTool, dispatch),
+      loadFilteredTools: bindActionCreators(toolActions.filterTools, dispatch),
     },
   };
 }

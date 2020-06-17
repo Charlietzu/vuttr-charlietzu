@@ -1,13 +1,16 @@
 import React from "react";
 import TextInput from "../common/TextInput";
+import { Button } from "reactstrap";
 
 const ToolForm = ({
   tool,
-  tagText,
   errors,
   onSave,
   onChange,
   handleTagsChange,
+  tagText,
+  tagsAux,
+  removeTag,
 }) => {
   return (
     <form onSubmit={onSave}>
@@ -57,6 +60,19 @@ const ToolForm = ({
         <small id="tagsHelp" className="form-text text-muted">
           Type the tag and press the spacebar key.
         </small>
+        <div>
+          {tool.tags.map((tag) => {
+            return (
+              <Button
+                key={tool.tags.indexOf(tag)}
+                color="danger"
+                className="m-2"
+              >
+                {"#" + tag + " "}
+              </Button>
+            );
+          })}
+        </div>
       </div>
 
       <button type="submit" className="btn btn-primary">

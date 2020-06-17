@@ -22,3 +22,9 @@ export function deleteTool(toolId) {
     .then(handleResponse)
     .catch(handleError);
 }
+
+export function filterTools(searchTerm) {
+  return fetch(API_URL + "?q=" + searchTerm)
+    .then(handleResponse)
+    .catch(handleError);
+}

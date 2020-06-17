@@ -8,6 +8,13 @@ export function loadToolsSuccess(tools) {
   };
 }
 
+export function loadFilteredToolsSuccess(searchTerm) {
+  return {
+    type: types.LOAD_FILTERED_TOOLS_SUCCESS,
+    searchTerm,
+  };
+}
+
 export function createToolSuccess(tool) {
   return {
     type: types.CREATE_TOOL_SUCCESS,
@@ -56,5 +63,12 @@ export function deleteTool(tool) {
   return function (dispatch) {
     dispatch(deleteToolSuccess(tool));
     return toolApi.deleteTool(tool.id);
+  };
+}
+
+export function filterTools(searchTerm) {
+  return function (dispatch) {
+    dispatch(loadFilteredToolsSuccess(searchTerm));
+    return toolApi.filterTools(searchTerm);
   };
 }
