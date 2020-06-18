@@ -6,6 +6,7 @@ import App from "./App";
 import configureStore from "./redux/configureStore.dev";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
+import "./fonts/SourceSansPro-Regular.ttf";
 
 const store = configureStore();
 

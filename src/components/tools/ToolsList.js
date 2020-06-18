@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redirect } from "react-router-dom";
 import * as toolActions from "../../redux/actions/toolActions";
+import { Button, Form, FormGroup } from "reactstrap";
+import styles from "../common/Styles";
 
 class ToolsList extends Component {
   state = {
@@ -53,27 +55,27 @@ class ToolsList extends Component {
       <div>
         {this.state.redirectToAddToolPage && <Redirect to="/tool" />}
         <Jumbotron />
-        <button
-          style={{ marginBottom: 20 }}
-          className="btn btn-primary add-author"
+        <Button
+          style={styles.buttonAdd}
           onClick={() => this.setState({ redirectToAddToolPage: true })}
         >
           Add Tool
-        </button>
-        <form
+        </Button>
+        <Form
           onSubmit={
             this.state.isChecked ? this.handleFilterByTag : this.handleFilter
           }
           className="form-inline float-right"
         >
-          <div className="form-group mx-sm-3 mb-2">
+          <FormGroup className="mx-sm-3 mb-2">
             <input
               type="text"
+              style={styles.filterInput}
               className="form-control"
               placeholder="Buscar"
               name="filter"
             />
-          </div>
+          </FormGroup>
           <div className="form-check">
             <input
               type="checkbox"
@@ -85,7 +87,7 @@ class ToolsList extends Component {
               Search in tags only
             </label>
           </div>
-        </form>
+        </Form>
         <div className="mt-3">
           <ToolCard
             tools={this.props.tools}

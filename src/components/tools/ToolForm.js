@@ -1,6 +1,6 @@
 import React from "react";
 import TextInput from "../common/TextInput";
-import { Button } from "reactstrap";
+import { Button, CardColumns } from "reactstrap";
 
 const ToolForm = ({
   tool,
@@ -60,7 +60,7 @@ const ToolForm = ({
         <small id="tagsHelp" className="form-text text-muted">
           Type the tag and press the spacebar key.
         </small>
-        <div>
+        <CardColumns>
           {tool.tags.map((tag) => {
             return (
               <Button
@@ -73,7 +73,7 @@ const ToolForm = ({
               </Button>
             );
           })}
-        </div>
+        </CardColumns>
       </div>
 
       <button type="submit" className="btn btn-primary">
