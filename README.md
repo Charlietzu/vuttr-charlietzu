@@ -5,7 +5,7 @@ This repository contains a Tool management application using React and makes req
 Basically a CRUD application that we can filter by the items requested for the API. <br />
 
 ### WARNING
-This project is not yet finished, i haven't yet applied any clean code technique, nor isolated components, i will make some major changes to its structure when the Redux implementation starts, so...don't be scared! Any doubt? Please, open a issue or contact me via e-mail.  
+This project is not yet finished, i haven't yet applied all the styles and i still want to clean more of the code. But you can already use it!  
 
 ## How to use
 
