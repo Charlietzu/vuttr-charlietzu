@@ -14,7 +14,9 @@ const ToolForm = ({
 }) => {
   return (
     <form onSubmit={onSave}>
-      <h2 className="mt-2">Add Tool</h2>
+      <h2 className="mt-2" style={{ fontWeight: "bold" }}>
+        Add Tool
+      </h2>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
           {errors.onSave}
@@ -57,7 +59,7 @@ const ToolForm = ({
           onKeyDown={handleTagsChange}
           error={errors.tags}
         />
-        <small id="tagsHelp" className="form-text text-muted">
+        <small id="tagsHelp" className="form-text text-muted smallText">
           Type the tag and press the spacebar key.
         </small>
         <CardColumns>
@@ -66,7 +68,7 @@ const ToolForm = ({
               <Button
                 key={tool.tags.indexOf(tag)}
                 color="danger"
-                className="m-2"
+                className="m-2 buttonRemove"
                 onClick={(e) => e.preventDefault()}
               >
                 {"#" + tag + " "}
@@ -76,7 +78,7 @@ const ToolForm = ({
         </CardColumns>
       </div>
 
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary buttonAdd">
         Save
       </button>
     </form>

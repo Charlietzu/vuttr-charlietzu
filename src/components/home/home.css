@@ -1,0 +1,15 @@
+.jumbotron h1 {
+  font-family: "Source Sans Pro SemiBold";
+  font-size: 42px;
+  line-height: 50px;
+  letter-spacing: 0.84px;
+  text-align: left;
+}
+
+.jumbotron h3 {
+  font-family: "Source Sans Pro SemiBold";
+  font-size: 30px;
+  line-height: 36px;
+  letter-spacing: 0.6px;
+  text-align: left;
+}

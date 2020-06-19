@@ -4,6 +4,11 @@
     url(./fonts/SourceSansPro-Regular.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: "Source Sans Pro SemiBold";
+  src: url(./fonts/SourceSansPro-SemiBold.ttf) format("truetype");
+}
+
 body {
   margin: 0;
   font-family: "Source Sans Pro";

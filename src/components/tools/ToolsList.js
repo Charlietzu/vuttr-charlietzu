@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from "react";
 import ToolCard from "./ToolCard";
 import Jumbotron from "../home/Jumbotron";
@@ -6,7 +7,7 @@ import { bindActionCreators } from "redux";
 import { Redirect } from "react-router-dom";
 import * as toolActions from "../../redux/actions/toolActions";
 import { Button, Form, FormGroup } from "reactstrap";
-import styles from "../common/Styles";
+import "./tools.css";
 
 class ToolsList extends Component {
   state = {
@@ -56,7 +57,7 @@ class ToolsList extends Component {
         {this.state.redirectToAddToolPage && <Redirect to="/tool" />}
         <Jumbotron />
         <Button
-          style={styles.buttonAdd}
+          className="buttonAdd"
           onClick={() => this.setState({ redirectToAddToolPage: true })}
         >
           Add Tool
@@ -70,20 +71,19 @@ class ToolsList extends Component {
           <FormGroup className="mx-sm-3 mb-2">
             <input
               type="text"
-              style={styles.filterInput}
-              className="form-control"
+              className="form-control filterInput"
               placeholder="Buscar"
               name="filter"
             />
           </FormGroup>
-          <div className="form-check">
+          <div className="form-check checkTag">
             <input
               type="checkbox"
               className="form-check-input"
               id="tagsOnly"
               onChange={this.handleCheck.bind(this)}
             />
-            <label className="form-check-label" htmlFor="tagsOnly">
+            <label className="checkLabel" htmlFor="tagsOnly">
               Search in tags only
             </label>
           </div>

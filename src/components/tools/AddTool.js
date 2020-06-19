@@ -66,13 +66,5 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   saveTool: toolActions.saveTool,
 };
-/* 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      saveTool: bindActionCreators(toolActions.saveTool, dispatch),
-    },
-  };
-} */
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTool);
