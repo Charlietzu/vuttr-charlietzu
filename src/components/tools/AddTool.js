@@ -31,9 +31,6 @@ export function AddTool({ saveTool, history, ...props }) {
       ...tool,
       tags: tagsAux,
     });
-    /*     console.log("tagText: ", tagText);
-    console.log("tagsAux: ", tagsAux);
-    console.log("tool tags: ", tool.tags); */
   }
 
   function handleChange({ target }) {

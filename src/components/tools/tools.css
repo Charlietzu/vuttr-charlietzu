@@ -14,6 +14,18 @@
   background: #2f55cc 0% 0% no-repeat padding-box;
 }
 
+.buttonAdd:focus {
+  background: #2f55cc 0% 0% no-repeat padding-box;
+}
+
+.buttonAdd:active {
+  background: #2f55cc 0% 0% no-repeat padding-box;
+}
+
+.buttonAddClicked {
+  background: #244aa8 0% 0% no-repeat padding-box;
+}
+
 .filterInput {
   background: #f5f4f6 0% 0% no-repeat padding-box;
   border: 1px solid #ebeaed;
