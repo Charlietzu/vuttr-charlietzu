@@ -27,6 +27,19 @@
   color: #170c3a;
 }
 
+.textInputHasValue {
+  background: #f5f4f6 0% 0% no-repeat padding-box;
+  border: 1px solid #ebeaed;
+  border-radius: 5px;
+  opacity: 1;
+  text-align: left;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0.4px;
+  color: #170c3a;
+  opacity: 1;
+}
+
 .form label {
   font-weight: bold;
   font-size: 18px;

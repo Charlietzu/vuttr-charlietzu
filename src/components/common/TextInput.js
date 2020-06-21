@@ -10,6 +10,7 @@ const TextInput = ({
   value,
   error,
   onKeyDown,
+  className,
 }) => {
   let wrapperClass = "form-group form";
   if (error && error.length > 0) {
@@ -23,7 +24,7 @@ const TextInput = ({
         <input
           type="text"
           name={name}
-          className="form-control textInput"
+          className={className}
           placeholder={placeholder}
           value={value}
           onChange={onChange}

@@ -38,6 +38,18 @@
   color: #b1adb9;
 }
 
+.inputHasValue {
+  background: #f5f4f6 0% 0% no-repeat padding-box;
+  border: 1px solid #ebeaed;
+  border-radius: 5px;
+  opacity: 1;
+  text-align: left;
+  line-height: 26px;
+  font-size: 18px;
+  letter-spacing: 0.4px;
+  color: #170c3a;
+}
+
 .checkTag label {
   text-align: left;
   font-family: Source Sans Pro;

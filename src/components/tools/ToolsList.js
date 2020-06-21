@@ -13,6 +13,7 @@ class ToolsList extends Component {
   state = {
     redirectToAddToolPage: false,
     isChecked: false,
+    inputHasValue: false,
   };
 
   componentDidMount() {
@@ -51,7 +52,18 @@ class ToolsList extends Component {
     this.setState({ isChecked: !this.state.isChecked });
   }
 
+  handleInputValue(e) {
+    if (e.target.value !== "") {
+      this.setState({ inputHasValue: true });
+    } else {
+      this.setState({ inputHasValue: false });
+    }
+  }
+
   render() {
+    let inputClass = this.state.inputHasValue
+      ? "form-control inputHasValue"
+      : "form-control filterInput";
     return (
       <div>
         {this.state.redirectToAddToolPage && <Redirect to="/tool" />}
@@ -71,8 +83,9 @@ class ToolsList extends Component {
           <FormGroup className="mx-sm-3 mb-2">
             <input
               type="text"
-              className="form-control filterInput"
+              className={inputClass}
               placeholder="Buscar"
+              onChange={(e) => this.handleInputValue(e)}
               name="filter"
             />
           </FormGroup>

@@ -9,6 +9,7 @@ export function AddTool({ saveTool, history, ...props }) {
   const [errors, setErrors] = useState({});
   const [tagsAux, setTagsAux] = useState([]);
   const [tagText, setTagText] = useState({ text: "" });
+  const [inputHasValue, setInputHasValue] = useState(false);
 
   function handleSave(event) {
     event.preventDefault();
@@ -33,7 +34,16 @@ export function AddTool({ saveTool, history, ...props }) {
     });
   }
 
+  function handleInputValue(value) {
+    if (value !== "") {
+      setInputHasValue(true);
+    } else {
+      setInputHasValue(true);
+    }
+  }
+
   function handleChange({ target }) {
+    handleInputValue(target.value);
     setTool({
       ...tool,
       [target.name]: [target.value],
@@ -48,7 +58,7 @@ export function AddTool({ saveTool, history, ...props }) {
       onChange={handleChange}
       handleTagsChange={handleTagsChange}
       tagText={tagText}
-      tagsAux={tagsAux}
+      inputHasValue={inputHasValue}
     />
   );
 }

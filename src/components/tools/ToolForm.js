@@ -9,13 +9,15 @@ const ToolForm = ({
   onChange,
   handleTagsChange,
   tagText,
-  tagsAux,
-  removeTag,
+  inputHasValue,
 }) => {
+  let inputClass = inputHasValue
+    ? "form-control textInputHasValue"
+    : "form-control textInput";
   return (
     <form onSubmit={onSave}>
       <h2 className="mt-2" style={{ fontWeight: "bold" }}>
-        Add Tool
+        Add a Tool
       </h2>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
@@ -30,6 +32,7 @@ const ToolForm = ({
         value={tool.title}
         onChange={onChange}
         error={errors.title}
+        className={inputClass}
       />
 
       <TextInput
@@ -39,6 +42,7 @@ const ToolForm = ({
         value={tool.description}
         onChange={onChange}
         error={errors.description}
+        className={inputClass}
       />
 
       <TextInput
@@ -48,6 +52,7 @@ const ToolForm = ({
         value={tool.link}
         onChange={onChange}
         error={errors.link}
+        className={inputClass}
       />
       <div className="form-group">
         {" "}
@@ -58,6 +63,7 @@ const ToolForm = ({
           onChange={handleTagsChange}
           onKeyDown={handleTagsChange}
           error={errors.tags}
+          className={inputClass}
         />
         <small id="tagsHelp" className="form-text text-muted smallText">
           Type the tag and press the spacebar key.
