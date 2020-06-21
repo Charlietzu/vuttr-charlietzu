@@ -3,6 +3,17 @@ import { createStore, compose, applyMiddleware } from "redux";
 import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
 import thunk from "redux-thunk";
 
+/**
+ * Store configuration file, if we need to make a production build
+ * we need to create a file that uses "prod" instead of "dev", using
+ * the configs needed.
+ */
+
+/**
+ * Store configuration function
+ * @param {array} initialState
+ * @returns {function} createStore()
+ */
 export default function configureStore(initialState) {
   /**add support for Redux dev tools */
   const composeEnhancers =

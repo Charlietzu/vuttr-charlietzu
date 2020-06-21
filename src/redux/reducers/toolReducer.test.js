@@ -4,6 +4,11 @@ import { expect } from "chai";
 import toolReducer, { initialState } from "./toolReducer";
 import * as actions from "../actions/toolActions";
 
+/**
+ * toolReducer tests, it help us to make sure that we maintain
+ * the logic whithout breaking the immutability principle.
+ */
+
 it("toolReducer should be a function", () => {
   expect(toolReducer).to.be.a("function");
 });

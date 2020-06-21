@@ -40,7 +40,10 @@ class ToolsList extends Component {
     }
   }
 
-  /** Call for the delete tool action */
+  /**
+   * Call for the delete tool action.
+   * @param {object} tool
+   */
   handleDeleteTool = async (tool) => {
     try {
       await this.props.actions.deleteTool(tool);
@@ -49,27 +52,37 @@ class ToolsList extends Component {
     }
   };
 
-  /** Call for the filter action */
+  /**
+   * Call for the filter action.
+   * @param {object} event
+   */
   handleFilter = async (event) => {
     event.preventDefault();
     let searchTerm = event.target.filter.value;
     let filter = await this.props.actions.loadFilteredTools(searchTerm);
   };
 
-  /**Call for the filter only by tag action */
+  /**
+   * Call for the filter only by tag action.
+   * @param {object} event
+   */
   handleFilterByTag = async (event) => {
     event.preventDefault();
     let searchTag = event.target.filter.value;
     let filter = await this.props.actions.loadFilteredToolsByTag(searchTag);
   };
 
-  /**Function for handling the checkbox state. */
+  /**
+   * Function for handling the checkbox state.
+   */
   handleCheck() {
     this.setState({ isChecked: !this.state.isChecked });
   }
 
-  /**Handler for the input filter, it checks if there is any value in it to applu a conditional
+  /**
+   * Handler for the input filter, it checks if there is any value in it to applu a conditional
    * style.
+   * @param {object} e
    */
   handleInputValue(e) {
     if (e.target.value !== "") {

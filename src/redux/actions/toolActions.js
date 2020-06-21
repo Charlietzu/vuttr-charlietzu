@@ -1,6 +1,15 @@
 import * as types from "./actionTypes";
 import * as toolApi from "../../api/toolApi";
 
+/**
+ * Tools actions definitions file.
+ */
+
+/**
+ * This function is called after the loadTools api function
+ * is done with success.
+ * @param {array} tools
+ */
 export function loadToolsSuccess(tools) {
   return {
     type: types.LOAD_TOOLS_SUCCESS,
@@ -8,6 +17,11 @@ export function loadToolsSuccess(tools) {
   };
 }
 
+/**
+ * This function is called after the saveTool api function
+ * is done with success.
+ * @param {object} tool
+ */
 export function createToolSuccess(tool) {
   return {
     type: types.CREATE_TOOL_SUCCESS,
@@ -15,6 +29,11 @@ export function createToolSuccess(tool) {
   };
 }
 
+/**
+ * This function is called after the deleteTool api function
+ * is done with success.
+ * @param {object} tool
+ */
 export function deleteToolSuccess(tool) {
   return {
     type: types.REMOVE_TOOL_SUCCESS,
@@ -22,6 +41,9 @@ export function deleteToolSuccess(tool) {
   };
 }
 
+/**
+ * This function loads the tools array by making the API call.
+ */
 export function loadTools() {
   return function (dispatch) {
     /**Redux thunk injects dispatch so we don't have to. */
@@ -39,6 +61,10 @@ export function loadTools() {
   };
 }
 
+/**
+ * This function save the tool object in the API.
+ * @param {object} tool
+ */
 export function saveTool(tool) {
   return function (dispatch) {
     return toolApi
@@ -52,6 +78,10 @@ export function saveTool(tool) {
   };
 }
 
+/**
+ * This function remove the tool object in the API.
+ * @param {object} tool
+ */
 export function deleteTool(tool) {
   return function (dispatch) {
     dispatch(deleteToolSuccess(tool));
@@ -59,6 +89,11 @@ export function deleteTool(tool) {
   };
 }
 
+/**
+ * This function loads the tools array by making the API call, filtering by the
+ * searchTerm.
+ * @param {string} searchTerm
+ */
 export function filterToolsByGlobal(searchTerm) {
   return function (dispatch) {
     return toolApi
@@ -72,6 +107,11 @@ export function filterToolsByGlobal(searchTerm) {
   };
 }
 
+/**
+ * This function loads the tools array by making the API call, filtering by each that
+ * matches the searchTag.
+ * @param {string} searchTag
+ */
 export function filterToolsByTag(searchTag) {
   return function (dispatch) {
     return toolApi

@@ -18,7 +18,10 @@ export function AddTool({ saveTool, history, ...props }) {
   const [tagText, setTagText] = useState({ text: "" });
   const [inputHasValue, setInputHasValue] = useState(false);
 
-  /**Handler for saving the tool. */
+  /**
+   * Handler for saving the tool.
+   * @param {object} event
+   */
   function handleSave(event) {
     event.preventDefault();
     saveTool(tool)
@@ -30,7 +33,10 @@ export function AddTool({ saveTool, history, ...props }) {
       });
   }
 
-  /**Handler for setting a conditional style for the text inputs. */
+  /**
+   * Handler for setting a conditional style for the text inputs.
+   * @param {string} value
+   */
   function handleInputValue(value) {
     if (value !== "") {
       setInputHasValue(true);
@@ -39,9 +45,11 @@ export function AddTool({ saveTool, history, ...props }) {
     }
   }
 
-  /**onChange handler for the tags input, it will clear the tagtext after pressing space bar (keycode 32)
+  /**
+   *onChange handler for the tags input, it will clear the tagtext after pressing space bar (keycode 32)
    * and add the input value to the tagsAux array, which will be passed for the tags array in the tool,
    * which we are adding.
+   * @param {object} event
    */
   function handleTagsChange(event) {
     handleInputValue(event.target.value);
@@ -55,7 +63,10 @@ export function AddTool({ saveTool, history, ...props }) {
       tags: tagsAux,
     });
   }
-  /**onChange handle for general inputs. */
+  /**
+   * onChange handle for general inputs.
+   * @param {oject} target
+   */
   function handleChange({ target }) {
     handleInputValue(target.value);
     setTool({

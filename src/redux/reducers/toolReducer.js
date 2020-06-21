@@ -2,6 +2,17 @@ import * as types from "../actions/actionTypes";
 
 export const initialState = [];
 
+/**
+ * toolReducer definition file.
+ */
+
+/**
+ * toolReducer function, it returns a new state based on the action
+ * passed via argument.
+ * @param {array} state
+ * @param {object} action
+ * @returns {array} state
+ */
 export default function toolReducer(state = initialState, action) {
   switch (action.type) {
     case types.LOAD_TOOLS_SUCCESS:
