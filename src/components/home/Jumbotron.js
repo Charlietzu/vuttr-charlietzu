@@ -1,6 +1,10 @@
 import React from "react";
 import "./home.css";
 
+/**
+ * Jumbotron stateless component.
+ */
+
 const Jumbotron = () => (
   <>
     <div className="jumbotron">

@@ -2,6 +2,10 @@ import React from "react";
 import { Navbar } from "reactstrap";
 import "./common.css";
 
+/**
+ * Header stateless component.
+ */
+
 const Header = () => {
   return (
     <Navbar className="navbar-expand-lg navbar-light navBar">

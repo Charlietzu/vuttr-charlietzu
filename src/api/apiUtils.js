@@ -1,3 +1,7 @@
+/**
+ * Utility methods for the API.
+ */
+
 export async function handleResponse(response) {
   if (response.ok) return response.json();
   if (response.status === 400) {

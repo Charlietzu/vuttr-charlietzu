@@ -1,5 +1,9 @@
 import { handleResponse, handleError } from "./apiUtils";
 
+/**
+ * Functions to call the API requests.
+ */
+
 const API_URL = "http://localhost:3000/tools";
 
 export function getTools() {

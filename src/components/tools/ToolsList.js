@@ -17,6 +17,11 @@ import {
 import "./tools.css";
 import { ReactComponent as SearchIcon } from "../../icons/search-icon.svg";
 
+/**
+ * Tool List component, here i defined the search filter, add tool button, and the list of tool cards.
+ * It has some handler functions too, to handle the delete action and filter action.
+ */
+
 class ToolsList extends Component {
   state = {
     redirectToAddToolPage: false,
@@ -26,39 +31,46 @@ class ToolsList extends Component {
 
   componentDidMount() {
     const { tools, actions } = this.props;
-
     if (tools.length === 0) {
       actions.loadTools().catch((error) => {
         alert("Loading tools failed" + error);
       });
+    } else {
+      this.setState({ toolsFound: true });
     }
   }
 
+  /** Call for the delete tool action */
   handleDeleteTool = async (tool) => {
     try {
       await this.props.actions.deleteTool(tool);
-      console.log(this.props.tools);
     } catch (error) {
       alert("Delete failed: " + error.message);
     }
   };
 
+  /** Call for the filter action */
   handleFilter = async (event) => {
     event.preventDefault();
     let searchTerm = event.target.filter.value;
     let filter = await this.props.actions.loadFilteredTools(searchTerm);
   };
 
+  /**Call for the filter only by tag action */
   handleFilterByTag = async (event) => {
     event.preventDefault();
     let searchTag = event.target.filter.value;
     let filter = await this.props.actions.loadFilteredToolsByTag(searchTag);
   };
 
+  /**Function for handling the checkbox state. */
   handleCheck() {
     this.setState({ isChecked: !this.state.isChecked });
   }
 
+  /**Handler for the input filter, it checks if there is any value in it to applu a conditional
+   * style.
+   */
   handleInputValue(e) {
     if (e.target.value !== "") {
       this.setState({ inputHasValue: true });
@@ -97,7 +109,7 @@ class ToolsList extends Component {
               <input
                 type="text"
                 className={inputClass}
-                placeholder="Buscar"
+                placeholder='Digite e aperte "ENTER"'
                 onChange={(e) => this.handleInputValue(e)}
                 name="filter"
               />

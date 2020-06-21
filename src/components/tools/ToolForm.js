@@ -2,6 +2,10 @@ import React from "react";
 import TextInput from "../common/TextInput";
 import { Button, CardColumns } from "reactstrap";
 
+/**
+ * Add Tool Form stateless component.
+ */
+
 const ToolForm = ({
   tool,
   errors,
