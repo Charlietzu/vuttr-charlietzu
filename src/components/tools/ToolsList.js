@@ -6,8 +6,16 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redirect } from "react-router-dom";
 import * as toolActions from "../../redux/actions/toolActions";
-import { Button, Form, FormGroup } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  InputGroupAddon,
+  InputGroup,
+  InputGroupText,
+} from "reactstrap";
 import "./tools.css";
+import { ReactComponent as SearchIcon } from "../../icons/search-icon.svg";
 
 class ToolsList extends Component {
   state = {
@@ -28,7 +36,6 @@ class ToolsList extends Component {
 
   handleDeleteTool = async (tool) => {
     try {
-      /**In async calls, it pauses on each await keyword and continue when the async call is completed.  */
       await this.props.actions.deleteTool(tool);
       console.log(this.props.tools);
     } catch (error) {
@@ -80,14 +87,21 @@ class ToolsList extends Component {
           }
           className="form-inline float-right"
         >
-          <FormGroup className="mx-sm-3 mb-2">
-            <input
-              type="text"
-              className={inputClass}
-              placeholder="Buscar"
-              onChange={(e) => this.handleInputValue(e)}
-              name="filter"
-            />
+          <FormGroup className="mx-sm-3 mb-2 searchInput">
+            <InputGroup>
+              <InputGroupAddon addonType="prepend" className="inputPrepend">
+                <InputGroupText>
+                  <SearchIcon className="searchIcon" />
+                </InputGroupText>
+              </InputGroupAddon>
+              <input
+                type="text"
+                className={inputClass}
+                placeholder="Buscar"
+                onChange={(e) => this.handleInputValue(e)}
+                name="filter"
+              />
+            </InputGroup>
           </FormGroup>
           <div className="form-check checkTag">
             <input

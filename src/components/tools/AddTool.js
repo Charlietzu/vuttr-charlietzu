@@ -22,7 +22,16 @@ export function AddTool({ saveTool, history, ...props }) {
       });
   }
 
+  function handleInputValue(value) {
+    if (value !== "") {
+      setInputHasValue(true);
+    } else {
+      setInputHasValue(true);
+    }
+  }
+
   function handleTagsChange(event) {
+    handleInputValue(event.target.value);
     setTagText({ text: event.target.value });
     if (event.keyCode === 32) {
       setTagsAux((tagsAux) => [...tagsAux, tagText.text.trim()]);
@@ -32,14 +41,6 @@ export function AddTool({ saveTool, history, ...props }) {
       ...tool,
       tags: tagsAux,
     });
-  }
-
-  function handleInputValue(value) {
-    if (value !== "") {
-      setInputHasValue(true);
-    } else {
-      setInputHasValue(true);
-    }
   }
 
   function handleChange({ target }) {

@@ -66,7 +66,8 @@ const ToolForm = ({
           className={inputClass}
         />
         <small id="tagsHelp" className="form-text text-muted smallText">
-          Type the tag and press the spacebar key.
+          Type the tag (without the "#") and press the spacebar key after each
+          tag.
         </small>
         <CardColumns>
           {tool.tags.map((tag) => {
