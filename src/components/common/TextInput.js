@@ -33,7 +33,6 @@ const TextInput = ({
           value={value}
           onChange={onChange}
           onKeyDown={onKeyDown}
-          required
         />
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
