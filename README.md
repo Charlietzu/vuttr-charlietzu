@@ -4,6 +4,10 @@ This repository contains a Tool management application using React and makes req
 
 Basically a CRUD application that we can filter by the items requested for the API. <br />
 
+### WARNING
+
+I documented this whole project in english because it makes more easier if someone from another country needs to use this code.
+
 ## How to use
 
 Clone/Download this repository, then run:
@@ -22,7 +26,7 @@ And the other will also start the API at:
 
 ### `http://localhost:3000`
 
-### DEPENDENCIES USED IN THIS APPLICATION
+## Dependencies used in this application
 
 - bootstrap/react-bootstrap/reactstrap: libraries used to create the responsive interface.
 - chai: library used to create assertions in the application tests, i think it is better than the native assertions.
