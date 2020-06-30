@@ -1,14 +1,23 @@
 # VUTTR-CHARLIETZU
 
+<p align="center">
+  <a href="https://www.linkedin.com/in/caio-c%C3%A9sar-silva-1aa8b7101/" target="_blank">
+    <img alt="Developed by: Caio César" src="https://img.shields.io/badge/developed%20by-Caio%20C%C3%A9sar-blueviolet">
+  </a>
+  <a href="https://github.com/Charlietzu" target="_blank" >
+    <img alt="Github - Charlietzu" src="https://img.shields.io/badge/GitHub-Charlietzu-blueviolet">
+  </a>
+</p>
+
 This repository contains a Tool management application using React and makes requests for a third-party API that contains all the data to be manipulated. <br />
 
 Basically a CRUD application that we can filter by the items requested for the API. <br />
 
-### WARNING
+### :warning: WARNING
 
 I documented this whole project in english because it makes more easier if someone from another country needs to use this code.
 
-## How to use
+## :information_source: How to use
 
 Clone/Download this repository, then run:
 
@@ -26,7 +35,7 @@ And the other will also start the API at:
 
 ### `http://localhost:3000`
 
-## Dependencies used in this application
+## :hammer: Dependencies used in this application
 
 - bootstrap/react-bootstrap/reactstrap: libraries used to create the responsive interface.
 - chai: library used to create assertions in the application tests, i think it is better than the native assertions.
